@@ -12,7 +12,7 @@ on:
       - master
 
 jobs:     
-  test_apisix:
+  test_xxxx:
     name: self-test
     runs-on: self-hosted
     steps:
@@ -27,15 +27,15 @@ jobs:
         grep ".*total number of events:" ${PWD}/performance.log| awk {'print int($5)'}
         cat /proc/cpuinfo | grep 'model name'
 
-    - name: run apisix
+    - name: run xxxx
       run: |
-        git clone https://github.com/apache/apisix.git
-        cd apisix
+        git clone https://github.com/apache/xxxx.git
+        cd xxxx
         make deps
         make init
         make run
-        curl -i http://127.0.0.1:9080/apisix/admin/routes/1 \
-        -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' \
+        curl -i http://127.0.0.1:9080/xxxx/admin/routes/1 \
+        -H 'X-API-KEY: xxxx' \
         -X PUT -d '
         {
             "uri": "/index.html",
@@ -47,15 +47,15 @@ jobs:
             }
         }'
 
-    - name: test apisix
+    - name: test xxxx
       run: |
         wrk -c100 -d30 -t1 --latency http://127.0.0.1:9080/index.html > ${PWD}/performance.log
         grep "^Requests/sec:" ${PWD}/performance.log | awk {'print int($2)'}
 
     - name: clean
       run: |
-        cd apisix
+        cd xxxx
         make stop
         cd ..
-        rm -rf ./apisix
-        etcdctl del --prefix "/apisix"
+        rm -rf ./xxxx
+        etcdctl del --prefix "/xxxx"
