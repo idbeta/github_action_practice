@@ -24,5 +24,9 @@ jobs:
       ################################
       - name: Lint Code Base
         uses: super-linter/super-linter@v5.0.0
- 
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: autofix-ci/action@8bc06253bec489732e5f9c52884c7cace15c0160
