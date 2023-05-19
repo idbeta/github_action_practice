@@ -28,6 +28,5 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           # Change to 'master' if your main branch differs
           DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: autofix-ci/action@8bc06253bec489732e5f9c52884c7cace15c0160
